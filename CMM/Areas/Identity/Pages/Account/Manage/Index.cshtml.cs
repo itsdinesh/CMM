@@ -23,6 +23,7 @@ namespace CMM.Areas.Identity.Pages.Account.Manage
             _signInManager = signInManager;
         }
 
+        [Display(Name = "Email")]
         public string Username { get; set; }
 
         [TempData]
@@ -34,12 +35,17 @@ namespace CMM.Areas.Identity.Pages.Account.Manage
         public class InputModel //form structure 2 rule, first - show the user id, second - disabled the edit function for name and id section
         {
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Phone Number")]
             public string PhoneNumber { get; set; }
 
+            [Display(Name = "User ID")]
             public string User_id { get; set; }
 
+
             public string Name { get; set; } //lock from edit
+
+            [Display(Name = "User Role")]
+            public string userRoles { get; set; }
 
             [Display(Name = "Age")]
             [Range(18, 100, ErrorMessage = "We only accept 18 years old and above to be our member")]
@@ -47,6 +53,13 @@ namespace CMM.Areas.Identity.Pages.Account.Manage
 
             public string Gender { get; set; }
 
+            [Display(Name = "Group Name")]
+            [StringLength(200, ErrorMessage = "Enter your name with 6 - 200 chars", MinimumLength = 6)]
+            public string GroupName { get; set; }
+
+            [Display(Name = "Address")]
+            [RegularExpression(@"^[A-Z]+[a-z]*$", ErrorMessage = "Only captial letter in the first char & only accept alphabet")]
+            public string Address { get; set; }
         }
 
         private async Task LoadAsync(CMMUser user)
@@ -62,7 +75,8 @@ namespace CMM.Areas.Identity.Pages.Account.Manage
                 Name = user.Name,
                 Age = user.Age,
                 Gender = user.Gender,
-                User_id = user.Id
+                User_id = user.Id,
+                userRoles = user.userRoles
 
             };
         }
