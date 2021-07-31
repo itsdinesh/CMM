@@ -9,12 +9,11 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="CreateVirtualEvent" enctype="multipart/form-data" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="ConcertPoster" class="control-label"></label>
-                <input asp-for="ConcertPoster" class="form-control" />
-                <span asp-validation-for="ConcertPoster" class="text-danger"></span>
+                <input asp-for="ConcertPoster" type="file" name="files" single />
             </div>
             <div class="form-group">
                 <label asp-for="ConcertMusician" class="control-label"></label>
