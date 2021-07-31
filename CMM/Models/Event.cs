@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,7 +12,8 @@ namespace CMM.Models
         [Key]
         public int ConcertID { get; set; }
 
-        [Key]
+        [Required]
+        [Url]
         public string ConcertPoster { get; set; }
 
         [Required]
@@ -45,6 +47,7 @@ namespace CMM.Models
         public string ConcertStatus {get; set;}
 
         [Required]
+        [DefaultValue(true)]
         public Boolean ConcertVisibility { get; set; }
     }
 }
