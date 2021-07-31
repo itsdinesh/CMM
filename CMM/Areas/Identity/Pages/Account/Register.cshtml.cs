@@ -58,7 +58,6 @@ namespace CMM.Areas.Identity.Pages.Account
 (
            new List<SelectListItem>
            {
-            new SelectListItem { Selected = true, Text = "Select Role", Value = "" },
             new SelectListItem { Selected = false, Text = "Manager", Value = "Manager" },
             new SelectListItem { Selected = false, Text = "Musician", Value = "Musician" },
             new SelectListItem { Selected = false, Text = "Patron", Value = "Patron" }
@@ -112,7 +111,7 @@ namespace CMM.Areas.Identity.Pages.Account
                public string Address { get; set; }
 
               [Display(Name = "Role")]
-               public String userRoles { get; set; } 
+              public string userRoles { get; set; } 
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -133,6 +132,7 @@ namespace CMM.Areas.Identity.Pages.Account
                     Name = Input.Name,
                     Age = Input.Age,
                     Gender = Input.Gender,
+                    userRoles = Input.userRoles,
                     EmailConfirmed = true
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);

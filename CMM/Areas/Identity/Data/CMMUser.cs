@@ -24,7 +24,10 @@ namespace CMM.Areas.Identity.Data
         public string GroupName { get; set; }
 
         [PersonalData]
-        public string Address { get; set; } 
+        public string Address { get; set; }
+
+        [PersonalData]
+        public string userRoles { get; set; }
 
     }
 }
