@@ -13,7 +13,6 @@ namespace CMM.Models
         public int ConcertID { get; set; }
 
         [Required]
-        [Url]
         public string ConcertPoster { get; set; }
 
         [Required]
@@ -44,7 +43,7 @@ namespace CMM.Models
         public int TicketLimit { get; set; }
 
         [Required]
-        public string ConcertStatus {get; set;}
+        public string ConcertStatus { get; set; }
 
         [Required]
         [DefaultValue(true)]
