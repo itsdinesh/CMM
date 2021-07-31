@@ -56,18 +56,19 @@ namespace CMM.Controllers
         public async Task<IActionResult> CreateVirtualEvent(List<IFormFile> files, [Bind("ConcertID,ConcertPoster,ConcertMusician,ConcertLink,ConcertName,ConcertDescription,ConcertDateTime,ConcertPrice,TicketLimit,ConcertStatus,ConcertVisibility")] Event @event)
         {
             CloudBlobContainer container = getBlobContainerInformation();
+            // 3.2: Give the upload blob name
             CloudBlockBlob blobitem = null;
             string message = null;
+            long epoch = DateTimeOffset.Now.ToUnixTimeSeconds();
 
             foreach (var file in files)
             {
                 try
                 {
-                    blobitem = container.GetBlockBlobReference(file.FileName);
+                    blobitem = container.GetBlockBlobReference("eventpic_epoch_" + epoch + ".png");
                     var stream = file.OpenReadStream();
                     blobitem.UploadFromStreamAsync(stream).Wait();
-                    message += "The " + blobitem.Name + blobitem.Uri + " has been successfully uploaded the blob storage.\\n";
-                    ViewBag.BlobUri = blobitem.Uri;
+                    //message += "The " + blobitem.Name + blobitem.Uri + " has been successfully uploaded the blob storage.\\n";
                 }
                 catch (Exception ex)
                 {
@@ -75,20 +76,10 @@ namespace CMM.Controllers
                     message += "Error Reason: " + ex.ToString();
                 }
             }
-
-            try
-            {
-               // _context.Add(@event.ConcertPoster = "visualstudio");
-                _context.Add(@event);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            catch (Exception ex) 
-            {
-                message += "Error Reason: " + ex.ToString();
-            }
-
-            return RedirectToAction("UploadFileFromForm", "Blobs", new { Message = message });
+            @event.ConcertPoster = blobitem.Uri.ToString();
+            _context.Add(@event);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(ListVirtualEvent));
         }
 
         public async Task<IActionResult> EditVirtualEvent(int? id)

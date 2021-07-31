@@ -13,7 +13,6 @@ namespace CMM.Models
         [Display(Name = "Concert ID")]
         public int ConcertID { get; set; }
 
-        [Required]
         [Display(Name = "Concert Poster")]
         public string ConcertPoster { get; set; }
 
