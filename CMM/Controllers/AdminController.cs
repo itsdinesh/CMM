@@ -32,6 +32,11 @@ namespace CMM.Controllers
         {
             return View(await _context.Event.ToListAsync());
         }
+        public async Task<IActionResult> ListHiddenVirtualEvent()
+        {
+            return View(await _context.Event.ToListAsync());
+        }
+
         public IActionResult CreateMusicianAccount()
         {
             return View();

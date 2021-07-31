@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<CMM.Models.Event>
 
 @{
-    ViewData["Title"] = "List of Active Virtual Events";
+    ViewData["Title"] = "List of Hidden Virtual Events";
 }
 
 <div class="container my-3">
     <div class="col-md-12 text-center">
-        <h1>List of Active Virtual Events</h1>
+        <h1>List of Hidden Virtual Events</h1>
         <a class="btn btn-success" asp-action="CreateVirtualEvent" role="button">Create New Virtual Event</a>
-        <p><a asp-action="ListHiddenVirtualEvent">View Hidden Virtual Event</a></p>
+        <p><a asp-action="ListVirtualEvent">View Active Virtual Events</a></p>
     </div>
 </div>
 
@@ -54,7 +54,7 @@
         </thead>
         <tbody>
             @foreach (var item in Model)
-                @if (item.ConcertVisibility == true)
+                @if (item.ConcertVisibility == false)
                 {
                     <tr>
                         <td>
