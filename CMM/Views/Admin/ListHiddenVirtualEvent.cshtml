@@ -48,7 +48,7 @@
                     Concert Status
                 </th>
                 <th>
-                    Edit
+                    Actions
                 </th>
             </tr>
         </thead>
@@ -76,8 +76,8 @@
                             @Html.DisplayFor(modelItem => item.ConcertStatus)
                         </td>
                         <td>
-                            <a class="btn btn-primary btn-block btn-primary" asp-action="Edit" asp-route-id="@item.ConcertID">Edit</a>
-                            <a class="btn btn-primary btn-block btn-secondary" asp-action="Details" asp-route-id="@item.ConcertID">More Details</a>
+                            <a class="btn btn-primary btn-block btn-primary" asp-action="EditVirtualEvent" asp-route-id="@item.ConcertID">Edit</a>
+                            <a class="btn btn-primary btn-block btn-secondary" asp-action="ViewEventDetails" asp-route-id="@item.ConcertID">More Details</a>
                         </td>
                     </tr>
                 }

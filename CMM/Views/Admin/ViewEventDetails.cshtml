@@ -1,7 +1,7 @@
 ﻿@model CMM.Models.Event
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "View Event Details";
 }
 
 <h1>View Event Details</h1>
@@ -10,61 +10,61 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ConcertPoster)
+           Concert Poster
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ConcertPoster)
+            <img src="@Html.DisplayFor(model => model.ConcertPoster)" />
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ConcertMusician)
+            Concert Musician
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ConcertMusician)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ConcertLink)
+            Concert Link
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ConcertLink)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ConcertName)
+           Concert Name
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ConcertName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ConcertDescription)
+           Concert Description
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ConcertDescription)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ConcertDateTime)
+            Concert Date &amp; Time
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ConcertDateTime)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ConcertPrice)
+           Concert Price
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ConcertPrice)
+            RM @Html.DisplayFor(model => model.ConcertPrice)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TicketLimit)
+           Tickets
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.TicketLimit)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ConcertStatus)
+            Concert Status
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ConcertStatus)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ConcertVisibility)
+            Visibility
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ConcertVisibility)
@@ -72,6 +72,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ConcertID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Admin" asp-action="EditVirtualEvent" asp-route-id="@Model.ConcertID">Edit</a> |
+    <a asp-controller="Admin" asp-action="ListVirtualEvent">Back to View Active Events</a>
 </div>

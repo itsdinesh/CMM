@@ -23,9 +23,51 @@ namespace CMM.Controllers
             return View();
         }
 
-        public IActionResult EditVirtualEvent()
+        public async Task<IActionResult> EditVirtualEvent(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var @event = await _context.Event.FindAsync(id);
+            if (@event == null)
+            {
+                return NotFound();
+            }
+            return View(@event);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditVirtualEvent(int id, [Bind("ConcertID,ConcertPoster,ConcertMusician,ConcertLink,ConcertName,ConcertDescription,ConcertDateTime,ConcertPrice,TicketLimit,ConcertStatus,ConcertVisibility")] Event @event)
+        {
+            if (id != @event.ConcertID)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(@event);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!EventExists(@event.ConcertID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(ListVirtualEvent));
+            }
+            return View(@event);
         }
 
         public async Task<IActionResult> ListVirtualEvent()
@@ -49,6 +91,28 @@ namespace CMM.Controllers
         public IActionResult AdminEditMusicianAccount()
         {
             return View();
+        }
+
+        public async Task<IActionResult> ViewEventDetails(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var @event = await _context.Event
+                .FirstOrDefaultAsync(m => m.ConcertID == id);
+            if (@event == null)
+            {
+                return NotFound();
+            }
+
+            return View(@event);
+        }
+
+        private bool EventExists(int id)
+        {
+            return _context.Event.Any(e => e.ConcertID == id);
         }
     }
 }
