@@ -28,7 +28,7 @@ namespace CMM.Controllers
             return View();
         }
 
-        public async Task<IActionResult> ListVirtualEvent()       
+        public async Task<IActionResult> ListVirtualEvent()
         {
             return View(await _context.Event.ToListAsync());
         }
