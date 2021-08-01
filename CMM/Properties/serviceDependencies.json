@@ -2,6 +2,14 @@
   "dependencies": {
     "mssql1": {
       "type": "mssql",
+      "connectionId": "ConnectionStrings:CMMContextConnection"
+    },
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:CMMNewContext"
+    },
+    "mssql3": {
+      "type": "mssql",
       "connectionId": "CMMEventContext"
     }
   }

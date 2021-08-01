@@ -26,9 +26,11 @@ namespace CMM
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
             services.AddDbContext<CMMEventContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("CMMEventContext")));
+            services.AddDbContext<CMMNewContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("CMMNewContext")));
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +50,7 @@ namespace CMM
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -56,6 +58,7 @@ namespace CMM
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }
