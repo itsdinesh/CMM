@@ -18,7 +18,7 @@
         if (User.IsInRole("Patron"))
         {
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="UserViewUpcomingEvents">User Event List</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="UserViewUpcomingEvents">Event List</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="TicketHistory">Ticket History</a>
@@ -46,7 +46,7 @@
                 <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="CreateVirtualEvent">Create Virtual Event</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="ListVirtualEvent">Admin Event List</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="ListVirtualEvent">Event List</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="CreateMusicianAccount">Create Musician Account</a>
@@ -55,7 +55,7 @@
                 <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="ListMusician">Musician List</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdminEditMusicianAccount">Admin - Edit Musician Profile</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdminEditMusicianAccount">Edit Musician Profile</a>
             </li>
         }
         <li class="nav-item">
@@ -71,7 +71,7 @@
             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="GuestViewUpcomingEvents">Guest Event List</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="GuestViewUpcomingEvents">Event List</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
