@@ -8,13 +8,13 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="EditVirtualEvent">
+        <form asp-action="EditVirtualEvent" enctype="multipart/form-data" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ConcertID" />
             <div class="form-group">
                 <label asp-for="ConcertPoster" class="control-label"></label>
-                <input asp-for="ConcertPoster" class="form-control" />
-                <span asp-validation-for="ConcertPoster" class="text-danger"></span>
+                <img src="@Html.DisplayFor(model => model.ConcertPoster)" width="300" />
+                <input asp-for="ConcertPoster" type="file" name="files" single required />
             </div>
             <div class="form-group">
                 <label asp-for="ConcertMusician" class="control-label"></label>

@@ -59,16 +59,23 @@ namespace CMM.Controllers
             // 3.2: Give the upload blob name
             CloudBlockBlob blobitem = null;
             string message = null;
-            long epoch = DateTimeOffset.Now.ToUnixTimeSeconds();
+
+            // Find Last ID
+            var showPiece = _context.Event.OrderByDescending(p => p.ConcertID).FirstOrDefault();
+            int lastID;
+            if (showPiece == null) 
+            {
+                lastID = 0;
+            }
+            lastID = showPiece.ConcertID + 1;
 
             foreach (var file in files)
             {
                 try
                 {
-                    blobitem = container.GetBlockBlobReference("eventpic_epoch_" + epoch + ".png");
+                    blobitem = container.GetBlockBlobReference("eventpic_" + lastID + ".png");
                     var stream = file.OpenReadStream();
                     blobitem.UploadFromStreamAsync(stream).Wait();
-                    //message += "The " + blobitem.Name + blobitem.Uri + " has been successfully uploaded the blob storage.\\n";
                 }
                 catch (Exception ex)
                 {
@@ -90,6 +97,7 @@ namespace CMM.Controllers
             }
 
             var @event = await _context.Event.FindAsync(id);
+
             if (@event == null)
             {
                 return NotFound();
@@ -99,17 +107,36 @@ namespace CMM.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditVirtualEvent(int id, [Bind("ConcertID,ConcertPoster,ConcertMusician,ConcertLink,ConcertName,ConcertDescription,ConcertDateTime,ConcertPrice,TicketLimit,ConcertStatus,ConcertVisibility")] Event @event)
+        public async Task<IActionResult> EditVirtualEvent(int id, List<IFormFile> files, [Bind("ConcertID,ConcertPoster,ConcertMusician,ConcertLink,ConcertName,ConcertDescription,ConcertDateTime,ConcertPrice,TicketLimit,ConcertStatus,ConcertVisibility")] Event @event)
         {
             if (id != @event.ConcertID)
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
-                {
+                {                    
+                    CloudBlobContainer container = getBlobContainerInformation();
+                    // 3.2: Give the upload blob name
+                    CloudBlockBlob blobitem = null;
+                    string message = null;
+
+                    foreach (var file in files)
+                    {
+                        try
+                        {
+                            blobitem = container.GetBlockBlobReference("eventpic_" + @event.ConcertID + ".png");
+                            var stream = file.OpenReadStream();
+                            blobitem.UploadFromStreamAsync(stream).Wait();
+                        }
+                        catch (Exception ex)
+                        {
+                            message += "The file of " + blobitem.Name + " is not able to be uploaded to the blob storage.\\n";
+                            message += "Error Reason: " + ex.ToString();
+                        }
+                    }
+                    @event.ConcertPoster = blobitem.Uri.ToString();
                     _context.Update(@event);
                     await _context.SaveChangesAsync();
                 }
