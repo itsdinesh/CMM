@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CMM.Migrations
+namespace CMM.Migrations.CMMEvent
 {
     public partial class addEvent : Migration
     {

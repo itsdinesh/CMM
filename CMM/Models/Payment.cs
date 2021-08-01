@@ -11,10 +11,12 @@ namespace CMM.Models
         //here define the column we need //alsop use it for making form structure
         public int PaymentID { get; set; }
 
-        public string PatronName { get; set; }
+        public string User_id { get; set; }
 
         public Decimal PaymentPrice { get; set; }
 
         public DateTime PaymentDate { get; set; }
+       
+        public int ConcertID { get; set; }
     }
 }

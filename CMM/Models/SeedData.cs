@@ -24,18 +24,19 @@ namespace CMM.Models
                 context.Payment.AddRange( //hard code data to your table
                     new Payment
                     {
-                        PatronName = "Vasan",
+                        User_id = "f3ab64cb-6c9d-4560-8b2f-a50ff48141b8",
                         PaymentPrice = 50,
-                        PaymentDate = DateTime.Parse("2018-2-12")
-                        
+                        PaymentDate = DateTime.Parse("2021-7-31"),
+                        ConcertID = 1
                     },
                     new Payment
                     {
-                        PatronName = "Deva",
+                        User_id = "7cd07b43-e6a0-4937-8882-34be21e80839",
                         PaymentPrice = 55,
-                        PaymentDate = DateTime.Parse("2019-2-12")
+                        PaymentDate = DateTime.Parse("2021-7-31"),
+                        ConcertID = 1
                     }
-                );
+                ); ; ; ; ;
                 context.SaveChanges();
             }
         }

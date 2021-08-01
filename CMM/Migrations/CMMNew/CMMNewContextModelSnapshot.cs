@@ -26,14 +26,17 @@ namespace CMM.Migrations.CMMNew
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("PatronName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ConcertID")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("PaymentPrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("User_id")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PaymentID");
 

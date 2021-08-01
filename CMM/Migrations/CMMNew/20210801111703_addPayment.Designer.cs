@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CMM.Migrations.CMMNew
 {
     [DbContext(typeof(CMMNewContext))]
-    [Migration("20210801081909_addEvent")]
-    partial class addEvent
+    [Migration("20210801111703_addPayment")]
+    partial class addPayment
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,14 +28,17 @@ namespace CMM.Migrations.CMMNew
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("PatronName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ConcertID")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("PaymentPrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("User_id")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PaymentID");
 

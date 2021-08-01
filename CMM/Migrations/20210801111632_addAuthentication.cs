@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CMM.Migrations.CMM
+namespace CMM.Migrations
 {
-    public partial class addEvent : Migration
+    public partial class addAuthentication : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

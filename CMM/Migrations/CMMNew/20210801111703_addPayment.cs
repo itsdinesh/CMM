@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CMM.Migrations.CMMNew
 {
-    public partial class addEvent : Migration
+    public partial class addPayment : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,9 +13,10 @@ namespace CMM.Migrations.CMMNew
                 {
                     PaymentID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PatronName = table.Column<string>(nullable: true),
+                    User_id = table.Column<string>(nullable: true),
                     PaymentPrice = table.Column<decimal>(nullable: false),
-                    PaymentDate = table.Column<DateTime>(nullable: false)
+                    PaymentDate = table.Column<DateTime>(nullable: false),
+                    ConcertID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
