@@ -1,7 +1,52 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity
+@using CMM.Areas.Identity.Data
+@model IEnumerable<CMM.Models.Payment>
+@inject UserManager<CMMUser> UserManager
+
 @{
     ViewData["Title"] = "Ticket History";
 }
 
-<h1>User - Ticket History</h1>
-
+<h1>Ticket History</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                User ID
+            </th>
+            <th>
+                Payment Price
+            </th>
+            <th>
+                Payment Date
+            </th>
+            <th>
+                Concert ID
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+            @if (item.User_id == @UserManager.GetUserId(User))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User_id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PaymentPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PaymentDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ConcertID)
+                    </td>
+                    <td>
+                        <a asp-action="TicketDetails" asp-route-id="@item.PaymentID">See more details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+</table>

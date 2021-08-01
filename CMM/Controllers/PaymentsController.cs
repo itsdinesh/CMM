@@ -19,7 +19,6 @@ namespace CMM.Views
         {
             _context = context;
         }
-        [Authorize(Roles = "Manager")]
         // GET: Payments
         public async Task<IActionResult> Index()
         {
@@ -55,7 +54,7 @@ namespace CMM.Views
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PaymentID,PatronName,PaymentPrice,PaymentDate")] Payment payment)
+        public async Task<IActionResult> Create([Bind("PaymentID,User_id,PaymentPrice,PaymentDate")] Payment payment)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +86,7 @@ namespace CMM.Views
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PaymentID,PatronName,PaymentPrice,PaymentDate")] Payment payment)
+        public async Task<IActionResult> Edit(int id, [Bind("PaymentID,User_id,PaymentPrice,PaymentDate")] Payment payment)
         {
             if (id != payment.PaymentID)
             {
