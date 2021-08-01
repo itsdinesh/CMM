@@ -57,6 +57,9 @@ namespace CMM.Controllers
             return View(@event);
         }
 
+        private static decimal concertPrice;
+        private static int concertID;
+
         public async Task<IActionResult> Checkout(int? id)
         {
             if (id == null)
@@ -65,6 +68,8 @@ namespace CMM.Controllers
             }
 
             var @event = await _context.Event.FindAsync(id);
+            concertPrice = (decimal)@event.ConcertPrice;
+            concertID = @event.ConcertID;
             if (@event == null)
             {
                 return NotFound();
@@ -72,17 +77,24 @@ namespace CMM.Controllers
             return View(@event);
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Checkout([Bind("ConcertID,ConcertPoster,ConcertMusician,ConcertLink,ConcertName,ConcertDescription,ConcertDateTime,ConcertPrice,TicketLimit,ConcertStatus,ConcertVisibility")] Event @event)
+        public async Task<IActionResult> Checkout([Bind("PaymentID")] Payment @payment)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(@event);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                DateTime currrentDate = DateTime.Now;
+                _paymentContext.Add(@payment);
+                @payment.User_id = (await _userManager.GetUserAsync(User))?.Id;
+                @payment.PaymentDate = currrentDate;
+                _paymentContext.Add(@payment);
+                @payment.PaymentPrice = concertPrice;
+                @payment.ConcertID = concertID;
+                await _paymentContext.SaveChangesAsync();
+                return RedirectToAction(nameof(TicketHistory));
             }
-            return View(@event);
+            return View(@payment);
         }
         public async Task<IActionResult> TicketHistory()
         {
@@ -111,6 +123,21 @@ namespace CMM.Controllers
             {
                 return NotFound();
             }
+
+            int concertID = payment.ConcertID;
+
+            var eventID = await _context.Event
+              .FirstOrDefaultAsync(m => m.ConcertID == concertID);
+
+            ViewBag.ConcertPoster = eventID.ConcertPoster;
+            ViewBag.ConcertMusician = eventID.ConcertMusician;
+            ViewBag.ConcertName = eventID.ConcertName;
+            ViewBag.ConcertDescription = eventID.ConcertDescription;
+            ViewBag.ConcertLink = eventID.ConcertLink;
+            ViewBag.ConcertDateTime = eventID.ConcertDateTime;
+            ViewBag.ConcertStatus = eventID.ConcertStatus;
+
+            //return NotFound(eventID);
 
             return View(payment);
         }

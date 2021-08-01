@@ -37,7 +37,6 @@ namespace CMM.Models
         public string ConcertDescription { get; set; }
 
         [Required]
-        [DataType(DataType.Date)]
         [Display(Name = "Concert Date")]
         public DateTime ConcertDateTime { get; set; }
 

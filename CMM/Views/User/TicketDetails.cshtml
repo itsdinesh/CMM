@@ -1,32 +1,19 @@
 ﻿@model CMM.Models.Payment
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Ticket Details";
 }
 
-<h1>Details</h1>
+<h1>Ticket Details</h1>
 
-<div>
-    <h4>Payment</h4>
+<div>  
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.User_id)
+            Concert Poster
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.User_id)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PaymentPrice)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PaymentPrice)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PaymentDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PaymentDate)
+            <img src="@ViewBag.ConcertPoster" width="300" />
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ConcertID)
@@ -34,9 +21,51 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ConcertID)
         </dd>
+        <dt class="col-sm-2">
+            Concert Name
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.ConcertName
+        </dd>
+        <dt class="col-sm-2">
+            Concert Description
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.ConcertDescription
+        </dd>
+        <dt class="col-sm-2">
+            Concert Link
+        </dt>
+        <dd class="col-sm-10">
+            <a href="@ViewBag.ConcertLink">@ViewBag.ConcertLink</a>
+        </dd>
+        <dt class="col-sm-2">
+            Concert Date Time
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.ConcertDateTime
+        </dd>
+        <dt class="col-sm-2">
+            User ID
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User_id)
+        </dd>
+        <dt class="col-sm-2">
+            Payment Price
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PaymentPrice)
+        </dd>
+
+        <dt class="col-sm-2">
+            Payment Date
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PaymentDate)
+        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.PaymentID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="TicketHistory">Back to Ticket History</a>
 </div>
