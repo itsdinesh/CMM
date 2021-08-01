@@ -7,9 +7,9 @@ using CMM.Models;
 
 namespace CMM.Data
 {
-    public class CMMContext : DbContext
+    public class CMMEventContext : DbContext
     {
-        public CMMContext (DbContextOptions<CMMContext> options)
+        public CMMEventContext (DbContextOptions<CMMEventContext> options)
             : base(options)
         {
         }

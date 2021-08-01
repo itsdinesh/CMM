@@ -4,16 +4,14 @@ using CMM.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CMM.Migrations
 {
-    [DbContext(typeof(CMMContext))]
-    [Migration("20210731090956_Initial")]
-    partial class Initial
+    [DbContext(typeof(CMMEventContext))]
+    partial class CMMEventContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,7 +49,6 @@ namespace CMM.Migrations
                         .HasMaxLength(250);
 
                     b.Property<string>("ConcertPoster")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("ConcertPrice")

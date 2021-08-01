@@ -27,7 +27,7 @@ namespace CMM
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<CMMContext>(options =>
+            services.AddDbContext<CMMEventContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("CMMContext")));
         }
 

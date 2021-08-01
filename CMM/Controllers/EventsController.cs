@@ -12,9 +12,9 @@ namespace CMM.Views.Events
 {
     public class EventsController : Controller
     {
-        private readonly CMMContext _context;
+        private readonly CMMEventContext _context;
 
-        public EventsController(CMMContext context)
+        public EventsController(CMMEventContext context)
         {
             _context = context;
         }

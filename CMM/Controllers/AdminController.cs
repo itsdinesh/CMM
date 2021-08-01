@@ -16,9 +16,9 @@ namespace CMM.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly CMMContext _context;
+        private readonly CMMEventContext _context;
 
-        public AdminController(CMMContext context)
+        public AdminController(CMMEventContext context)
         {
             _context = context;
         }
