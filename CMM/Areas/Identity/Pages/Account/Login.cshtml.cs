@@ -12,6 +12,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using CMM.Controllers;
+using System.Security.Claims;
+
 
 namespace CMM.Areas.Identity.Pages.Account
 {
@@ -51,6 +54,8 @@ namespace CMM.Areas.Identity.Pages.Account
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
+            public string userRoles { get; set; }
+
             [Display(Name = "Remember me?")]
             public bool RememberMe { get; set; }
         }
@@ -71,7 +76,7 @@ namespace CMM.Areas.Identity.Pages.Account
 
             ReturnUrl = returnUrl;
         }
-
+        public virtual ClaimsPrincipal User2 { get; }
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
@@ -83,6 +88,15 @@ namespace CMM.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    string emailTemp = "manager6@gmail.com";
+                    TablesController tc = new TablesController();
+                    //var eventID = await _context.Event.FirstOrDefaultAsync(m => m.ConcertID == concertID);
+                    var paymentID = await _userManager.FindByEmailAsync(Input.Email);
+                    string role = paymentID.userRoles;
+                    //m => m.Email == Input.Email
+                    // tc.testFunction(_userManager.GetUserName(User), "3", _userManager.GetUserId(User), "Login at: " + DateTime.Now);
+                    tc.testFunction(Input.Email, "11", role, "Login at: " + DateTime.Now);
+
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
