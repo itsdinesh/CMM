@@ -63,11 +63,15 @@ namespace CMM.Controllers
             // Find Last ID
             var showPiece = _context.Event.OrderByDescending(p => p.ConcertID).FirstOrDefault();
             int lastID;
-            if (showPiece == null) 
+
+            if (showPiece == null)
             {
-                lastID = 0;
+                lastID = 1;
             }
-            lastID = showPiece.ConcertID + 1;
+            else
+            {
+                lastID = showPiece.ConcertID + 1;
+            }
 
             foreach (var file in files)
             {
