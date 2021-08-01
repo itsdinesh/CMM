@@ -1,7 +1,65 @@
-﻿
+﻿@model CMM.Models.Event
+
 @{
     ViewData["Title"] = "Purchase Ticket";
 }
 
-<h1>User - Purchase Ticket</h1>
+<h1>Purchase Ticket</h1>
 
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Concert Poster
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@Html.DisplayFor(model => model.ConcertPoster)" width="300" />
+        </dd>
+        <dt class="col-sm-2">
+            Concert Musician
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ConcertMusician)
+        </dd>
+        <dt class="col-sm-2">
+            Concert Name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ConcertName)
+        </dd>
+        <dt class="col-sm-2">
+            Concert Description
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ConcertDescription)
+        </dd>
+        <dt class="col-sm-2">
+            Concert Date &amp; Time
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ConcertDateTime)
+        </dd>
+        <dt class="col-sm-2">
+            Concert Price
+        </dt>
+        <dd class="col-sm-10">
+            RM @Html.DisplayFor(model => model.ConcertPrice)
+        </dd>
+        <dt class="col-sm-2">
+            Tickets
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TicketLimit)
+        </dd>
+        <dt class="col-sm-2">
+            Concert Status
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ConcertStatus)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-secondary" asp-controller="User" asp-action="UserViewUpcomingEvents">Back to View Upcoming Virtual Events</a>
+    <a class="btn btn-primary"  asp-controller="User" asp-action="Checkout" asp-route-id="@Model.ConcertID">Go to Checkout</a>
+</div>

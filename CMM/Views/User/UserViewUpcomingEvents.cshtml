@@ -1,7 +1,83 @@
-﻿
+﻿@model IEnumerable<CMM.Models.Event>
+
 @{
-    ViewData["Title"] = "User Event List";
+    ViewData["Title"] = "List of Active Virtual Events";
 }
 
-<h1>User - Upcoming Virtual Events</h1>
+<div class="container my-3">
+    <div class="col-md-12 text-center">
+        <h1>List of Upcoming Virtual Events</h1>
+    </div>
+</div>
 
+<style>
+    #td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .table {
+        table-layout: fixed;
+        word-wrap: break-word;
+    }
+</style>
+
+<div class="">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Concert Musician
+                </th>
+                <th>
+                    Concert Name
+                </th>
+                <th>
+                    Concert Date &amp; Time
+                </th>
+                <th>
+                    Ticket Price
+                </th>
+                <th>
+                    Tickets
+                </th>
+                <th>
+                    Concert Status
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+                @if (item.ConcertVisibility == true)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ConcertMusician)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ConcertName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ConcertDateTime)
+                        </td>
+                        <td>
+                            RM @Html.DisplayFor(modelItem => item.ConcertPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TicketLimit)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ConcertStatus)
+                        </td>
+                        <td>
+                            <a class="btn btn-primary btn-block btn-secondary" asp-controller="User" asp-action="PurchaseTicket" asp-route-id="@item.ConcertID">Purchase Ticket</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
