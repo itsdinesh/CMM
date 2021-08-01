@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CMM.Migrations
 {
-    public partial class addevent : Migration
+    public partial class addEvent : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

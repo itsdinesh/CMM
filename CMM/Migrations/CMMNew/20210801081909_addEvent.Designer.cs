@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CMM.Migrations.CMMNew
 {
     [DbContext(typeof(CMMNewContext))]
-    [Migration("20210731153823_createPaymentTable")]
-    partial class createPaymentTable
+    [Migration("20210801081909_addEvent")]
+    partial class addEvent
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
