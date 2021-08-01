@@ -7,13 +7,13 @@ using CMM.Models;
 
 namespace CMM.Data
 {
-    public class CMMContext : DbContext
+    public class CMMNewContext : DbContext
     {
-        public CMMContext (DbContextOptions<CMMContext> options)
+        public CMMNewContext (DbContextOptions<CMMNewContext> options)
             : base(options)
         {
         }
 
-        public DbSet<CMM.Models.Event> Event { get; set; }
+        public DbSet<CMM.Models.Payment> Payment { get; set; }
     }
 }

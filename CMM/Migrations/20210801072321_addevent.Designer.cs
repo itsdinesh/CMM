@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CMM.Migrations
 {
-    [DbContext(typeof(CMMContext))]
-    [Migration("20210731090956_Initial")]
-    partial class Initial
+    [DbContext(typeof(CMMEventContext))]
+    [Migration("20210801072321_addevent")]
+    partial class addevent
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,7 +51,6 @@ namespace CMM.Migrations
                         .HasMaxLength(250);
 
                     b.Property<string>("ConcertPoster")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("ConcertPrice")

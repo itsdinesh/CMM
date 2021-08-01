@@ -7,24 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CMM.Data;
 using CMM.Models;
+using Microsoft.AspNetCore.Authorization;
 
-namespace CMM.Views.Events
+namespace CMM.Views
 {
-    public class EventsController : Controller
+    public class PaymentsController : Controller
     {
-        private readonly CMMEventContext _context;
+        private readonly CMMNewContext _context;
 
-        public EventsController(CMMEventContext context)
+        public PaymentsController(CMMNewContext context)
         {
             _context = context;
         }
-
+        [Authorize(Roles = "Manager")]
+        // GET: Payments
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Event.ToListAsync());
+            return View(await _context.Payment.ToListAsync());
         }
 
-        // GET: Events/Details/5
+        // GET: Payments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +34,39 @@ namespace CMM.Views.Events
                 return NotFound();
             }
 
-            var @event = await _context.Event
-                .FirstOrDefaultAsync(m => m.ConcertID == id);
-            if (@event == null)
+            var payment = await _context.Payment
+                .FirstOrDefaultAsync(m => m.PaymentID == id);
+            if (payment == null)
             {
                 return NotFound();
             }
 
-            return View(@event);
+            return View(payment);
         }
 
-        // GET: Events/Create
+        // GET: Payments/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Events/Create
+        // POST: Payments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ConcertID,ConcertPoster,ConcertMusician,ConcertLink,ConcertName,ConcertDescription,ConcertDateTime,ConcertPrice,TicketLimit,ConcertStatus,ConcertVisibility")] Event @event)
+        public async Task<IActionResult> Create([Bind("PaymentID,PatronName,PaymentPrice,PaymentDate")] Payment payment)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(@event);
+                _context.Add(payment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(@event);
+            return View(payment);
         }
 
-        // GET: Events/Edit/5
+        // GET: Payments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +74,22 @@ namespace CMM.Views.Events
                 return NotFound();
             }
 
-            var @event = await _context.Event.FindAsync(id);
-            if (@event == null)
+            var payment = await _context.Payment.FindAsync(id);
+            if (payment == null)
             {
                 return NotFound();
             }
-            return View(@event);
+            return View(payment);
         }
 
-        // POST: Events/Edit/5
+        // POST: Payments/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ConcertID,ConcertPoster,ConcertMusician,ConcertLink,ConcertName,ConcertDescription,ConcertDateTime,ConcertPrice,TicketLimit,ConcertStatus,ConcertVisibility")] Event @event)
+        public async Task<IActionResult> Edit(int id, [Bind("PaymentID,PatronName,PaymentPrice,PaymentDate")] Payment payment)
         {
-            if (id != @event.ConcertID)
+            if (id != payment.PaymentID)
             {
                 return NotFound();
             }
@@ -96,12 +98,12 @@ namespace CMM.Views.Events
             {
                 try
                 {
-                    _context.Update(@event);
+                    _context.Update(payment);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EventExists(@event.ConcertID))
+                    if (!PaymentExists(payment.PaymentID))
                     {
                         return NotFound();
                     }
@@ -112,10 +114,10 @@ namespace CMM.Views.Events
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(@event);
+            return View(payment);
         }
 
-        // GET: Events/Delete/5
+        // GET: Payments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +125,30 @@ namespace CMM.Views.Events
                 return NotFound();
             }
 
-            var @event = await _context.Event
-                .FirstOrDefaultAsync(m => m.ConcertID == id);
-            if (@event == null)
+            var payment = await _context.Payment
+                .FirstOrDefaultAsync(m => m.PaymentID == id);
+            if (payment == null)
             {
                 return NotFound();
             }
 
-            return View(@event);
+            return View(payment);
         }
 
-        // POST: Events/Delete/5
+        // POST: Payments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var @event = await _context.Event.FindAsync(id);
-            _context.Event.Remove(@event);
+            var payment = await _context.Payment.FindAsync(id);
+            _context.Payment.Remove(payment);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EventExists(int id)
+        private bool PaymentExists(int id)
         {
-            return _context.Event.Any(e => e.ConcertID == id);
+            return _context.Payment.Any(e => e.PaymentID == id);
         }
     }
 }

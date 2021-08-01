@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CMM.Migrations
 {
-    public partial class Initial : Migration
+    public partial class addevent : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace CMM.Migrations
                 {
                     ConcertID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ConcertPoster = table.Column<string>(nullable: false),
+                    ConcertPoster = table.Column<string>(nullable: true),
                     ConcertMusician = table.Column<string>(maxLength: 250, nullable: false),
                     ConcertLink = table.Column<string>(nullable: false),
                     ConcertName = table.Column<string>(maxLength: 250, nullable: false),

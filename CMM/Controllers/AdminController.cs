@@ -11,14 +11,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CMM.Controllers
 {
+    [Authorize(Roles = "Manager")]
     public class AdminController : Controller
     {
-        private readonly CMMContext _context;
+        private readonly CMMEventContext _context;
 
-        public AdminController(CMMContext context)
+        public AdminController(CMMEventContext context)
         {
             _context = context;
         }
