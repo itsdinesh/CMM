@@ -4,12 +4,6 @@
     ViewData["Title"] = "List of Active Virtual Events";
 }
 
-<div class="container my-3">
-    <div class="col-md-12 text-center">
-        <h1>List of Upcoming Virtual Events</h1>
-    </div>
-</div>
-
 <style>
     #td {
         overflow: hidden;
@@ -22,6 +16,13 @@
         word-wrap: break-word;
     }
 </style>
+
+<div class="container my-3">
+    <div class="col-md-12 text-center">
+        <h1>List of Upcoming Virtual Events</h1>
+        <a class="btn btn-success" asp-area="Identity" asp-page="/Account/Login" role="button">Log In to Purchase Ticket</a>
+    </div>
+</div>
 
 <div class="">
     <table class="table">
