@@ -1,5 +1,7 @@
-﻿using CMM.Models;
+﻿using CMM.Data;
+using CMM.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -11,10 +13,12 @@ namespace CMM.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly CMMEventContext _context;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, CMMEventContext contextEvent)
         {
+            _context = contextEvent;
             _logger = logger;
         }
 
@@ -28,9 +32,26 @@ namespace CMM.Controllers
             return View();
         }
 
-        public IActionResult GuestViewUpcomingEvents() 
+        public async Task<IActionResult> GuestViewUpcomingEvents() 
         {
-            return View();
+            return View(await _context.Event.ToListAsync());
+        }
+
+        public async Task<IActionResult> EventDetails(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var @event = await _context.Event
+                .FirstOrDefaultAsync(m => m.ConcertID == id);
+            if (@event == null)
+            {
+                return NotFound();
+            }
+
+            return View(@event);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
