@@ -64,6 +64,9 @@ namespace CMM.Migrations.CMMEvent
                     b.Property<int>("TicketLimit")
                         .HasColumnType("int");
 
+                    b.Property<int>("TicketPurchased")
+                        .HasColumnType("int");
+
                     b.HasKey("ConcertID");
 
                     b.ToTable("Event");

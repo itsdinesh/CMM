@@ -11,10 +11,12 @@
         <form asp-action="EditVirtualEvent" enctype="multipart/form-data" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ConcertID" />
+            <input type="hidden" asp-for="TicketPurchased" />
+
             <div class="form-group">
                 <label asp-for="ConcertPoster" class="control-label"></label>
                 <img src="@Html.DisplayFor(model => model.ConcertPoster)" width="300" />
-                <input asp-for="ConcertPoster" type="file" name="files" single required />
+                <input asp-for="ConcertPoster" type="file" name="files" single />
             </div>
             <div class="form-group">
                 <label asp-for="ConcertMusician" class="control-label"></label>
@@ -50,6 +52,11 @@
                 <label asp-for="TicketLimit" class="control-label"></label>
                 <input asp-for="TicketLimit" class="form-control" />
                 <span asp-validation-for="TicketLimit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TicketPurchased" class="control-label"></label>
+                <input asp-for="TicketPurchased" class="form-control" disabled />
+                <span asp-validation-for="TicketPurchased" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ConcertStatus" class="control-label"></label>

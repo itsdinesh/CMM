@@ -102,6 +102,7 @@ namespace CMM.Controllers
                 }
             }
             @event.ConcertPoster = blobitem.Uri.ToString();
+            @event.TicketPurchased = 500;
             _context.Add(@event);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(ListVirtualEvent));
@@ -125,7 +126,7 @@ namespace CMM.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditVirtualEvent(int id, List<IFormFile> files, [Bind("ConcertID,ConcertPoster,ConcertMusician,ConcertLink,ConcertName,ConcertDescription,ConcertDateTime,ConcertPrice,TicketLimit,ConcertStatus,ConcertVisibility")] Event @event)
+        public async Task<IActionResult> EditVirtualEvent(int id, List<IFormFile> files, [Bind("ConcertID,ConcertPoster,ConcertMusician,ConcertLink,ConcertName,ConcertDescription,ConcertDateTime,ConcertPrice,TicketLimit,TicketPurchased,ConcertStatus,ConcertVisibility")] Event @event)
         {
             if (id != @event.ConcertID)
             {
@@ -153,6 +154,11 @@ namespace CMM.Controllers
                             message += "The file of " + blobitem.Name + " is not able to be uploaded to the blob storage.\\n";
                             message += "Error Reason: " + ex.ToString();
                         }
+                    }
+                    if(blobitem == null) 
+                    {
+                        blobitem = container.GetBlockBlobReference("eventpic_" + @event.ConcertID + ".png");
+                        @event.ConcertPoster = blobitem.Uri.ToString();
                     }
                     @event.ConcertPoster = blobitem.Uri.ToString();
                     _context.Update(@event);

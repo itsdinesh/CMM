@@ -49,11 +49,9 @@ namespace CMM.Models
         [Display(Name = "Ticket Limit")]
         public int TicketLimit { get; set; }
 
-
-        //[Required]
-        //[DefaultValue(0)]
-        //[Display(Name = "Ticket Purchased")]
-        //public int TicketPurchased { get; set; }
+        [Required]
+        [Display(Name = "Ticket Purchased")]
+        public int TicketPurchased { get; set; }
 
         [Required]
         [Display(Name = "Concert Status")]

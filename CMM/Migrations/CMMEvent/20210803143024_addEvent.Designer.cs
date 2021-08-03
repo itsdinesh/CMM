@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CMM.Migrations.CMMEvent
 {
     [DbContext(typeof(CMMEventContext))]
-    [Migration("20210801111645_addEvent")]
+    [Migration("20210803143024_addEvent")]
     partial class addEvent
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,6 +64,9 @@ namespace CMM.Migrations.CMMEvent
                         .HasColumnType("bit");
 
                     b.Property<int>("TicketLimit")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TicketPurchased")
                         .HasColumnType("int");
 
                     b.HasKey("ConcertID");

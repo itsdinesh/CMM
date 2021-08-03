@@ -84,6 +84,20 @@ namespace CMM.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Update Ticket Purchase Counter
+                var @event = await _context.Event.FindAsync(concertID);
+                @event.TicketPurchased += 1;
+
+                // Update Concert Status and Hide Event to Guest/Patron when Sold Out
+                if (@event.TicketPurchased == @event.TicketLimit)
+                {
+                    @event.ConcertStatus = "Sold Out";
+                    @event.ConcertVisibility = false;
+                }
+
+                await _context.SaveChangesAsync();
+
+                // Update Ticket to Payment Table
                 DateTime currrentDate = DateTime.Now;
                 _paymentContext.Add(@payment);
                 @payment.User_id = (await _userManager.GetUserAsync(User))?.Id;

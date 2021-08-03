@@ -21,6 +21,7 @@ namespace CMM.Migrations.CMMEvent
                     ConcertDateTime = table.Column<DateTime>(nullable: false),
                     ConcertPrice = table.Column<decimal>(nullable: false),
                     TicketLimit = table.Column<int>(nullable: false),
+                    TicketPurchased = table.Column<int>(nullable: false),
                     ConcertStatus = table.Column<string>(nullable: false),
                     ConcertVisibility = table.Column<bool>(nullable: false)
                 },

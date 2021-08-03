@@ -58,32 +58,32 @@
         </thead>
         <tbody>
             @foreach (var item in Model)
-                @if (item.ConcertVisibility == true)
+                @if (item.ConcertVisibility == true || item.ConcertVisibility == false && item.ConcertStatus == "Sold Out")
                     @if (@ViewBag.concertMusician == item.ConcertMusician)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ConcertMusician)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ConcertName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ConcertDateTime)
-                            </td>
-                            <td>
-                                RM @Html.DisplayFor(modelItem => item.ConcertPrice)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TicketLimit)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ConcertStatus)
-                            </td>
-                            <td>
-                                <a class="btn btn-primary btn-block btn-secondary" asp-controller="Musician" asp-action="MusicianEventDetails" asp-route-id="@item.ConcertID">More Details</a>
-                            </td>
-                        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConcertMusician)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConcertName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConcertDateTime)
+                </td>
+                <td>
+                    RM @Html.DisplayFor(modelItem => item.ConcertPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TicketLimit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConcertStatus)
+                </td>
+                <td>
+                    <a class="btn btn-primary btn-block btn-secondary" asp-controller="Musician" asp-action="MusicianEventDetails" asp-route-id="@item.ConcertID">More Details</a>
+                </td>
+            </tr>
                     }
                 </tbody>
             </table>

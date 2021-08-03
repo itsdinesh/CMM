@@ -10,7 +10,7 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-           Concert Poster
+            Concert Poster
         </dt>
         <dd class="col-sm-10">
             <img src="@Html.DisplayFor(model => model.ConcertPoster)" width="300"/>
@@ -28,13 +28,13 @@
             @Html.DisplayFor(model => model.ConcertLink)
         </dd>
         <dt class="col-sm-2">
-           Concert Name
+            Concert Name
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ConcertName)
         </dd>
         <dt class="col-sm-2">
-           Concert Description
+            Concert Description
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ConcertDescription)
@@ -46,16 +46,22 @@
             @Html.DisplayFor(model => model.ConcertDateTime)
         </dd>
         <dt class="col-sm-2">
-           Concert Price
+            Concert Price
         </dt>
         <dd class="col-sm-10">
             RM @Html.DisplayFor(model => model.ConcertPrice)
         </dd>
         <dt class="col-sm-2">
-           Tickets
+            Tickets
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.TicketLimit)
+        </dd>
+        <dt class="col-sm-2">
+            Tickets Purchased
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TicketPurchased)
         </dd>
         <dt class="col-sm-2">
             Concert Status
