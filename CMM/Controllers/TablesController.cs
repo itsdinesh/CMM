@@ -34,12 +34,11 @@ namespace CMM.Controllers
             return table;
         }
 
-        public void testFunction(string PartitionKey, string RowKey, string Role, string Action)
+        public void testFunction(string PartitionKey, string RowKey, string Email, string Action)
         {
             UserLogin log = new UserLogin(PartitionKey, RowKey);
-            log.Role = Role;
+            log.Email = Email;
             log.Action = Action;
-
 
             CloudTable table = getContainerInformation();
             try

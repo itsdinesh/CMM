@@ -8,15 +8,15 @@ namespace CMM.Models
 {
     public class UserLogin: TableEntity
     {
-        public UserLogin(string Name, string ID)
+        public UserLogin(string PartitionKey, string RowKey)
         {
-            this.PartitionKey = Name;
-            this.RowKey = ID;
+            this.PartitionKey = PartitionKey;
+            this.RowKey = RowKey;
         }
         public UserLogin() { }
 
         //create other properties
-        public string Role { get; set; }
+        public string Email { get; set; }
         public string Action { get; set; }
     }
 }

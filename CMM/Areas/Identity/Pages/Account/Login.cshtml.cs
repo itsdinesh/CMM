@@ -76,7 +76,8 @@ namespace CMM.Areas.Identity.Pages.Account
 
             ReturnUrl = returnUrl;
         }
-        public virtual ClaimsPrincipal User2 { get; }
+        TablesController tc = new TablesController();
+        Guid rowKey = Guid.NewGuid();
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
@@ -88,15 +89,9 @@ namespace CMM.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    
-                    TablesController tc = new TablesController();
-                    //var eventID = await _context.Event.FirstOrDefaultAsync(m => m.ConcertID == concertID);
-                    var paymentID = await _userManager.FindByEmailAsync(Input.Email);
-                    string role = paymentID.userRoles;
-                    //m => m.Email == Input.Email
-                    // tc.testFunction(_userManager.GetUserName(User), "3", _userManager.GetUserId(User), "Login at: " + DateTime.Now);
-                    tc.testFunction(Input.Email, "11", role, "Login at: " + DateTime.Now);
-
+                    var userID = await _userManager.FindByEmailAsync(Input.Email);
+                    string role = userID.userRoles;
+                    tc.testFunction(role, rowKey.ToString(), Input.Email, "Login at: " + DateTime.Now);
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
@@ -111,6 +106,7 @@ namespace CMM.Areas.Identity.Pages.Account
                 }
                 else
                 {
+                    tc.testFunction("Invalid", rowKey.ToString(), Input.Email, "Invalid Login at: " + DateTime.Now);
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }
