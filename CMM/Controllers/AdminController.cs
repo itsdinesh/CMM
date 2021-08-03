@@ -195,6 +195,8 @@ namespace CMM.Controllers
         }
         public IActionResult ListMusician()
         {
+            var users = _userManager.Users;
+            return NotFound(users.ToListAsync());
             return View();
         }
 
