@@ -12,6 +12,9 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Identity;
+using CMM.Areas.Identity.Data;
 
 namespace CMM.Controllers
 {
@@ -19,10 +22,12 @@ namespace CMM.Controllers
     public class AdminController : Controller
     {
         private readonly CMMEventContext _context;
+        private readonly UserManager<CMMUser> _userManager;
 
-        public AdminController(CMMEventContext context)
+        public AdminController(CMMEventContext context, UserManager<CMMUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // 1. Create New Function - Link to the blob storage account & also at the correct container.
@@ -46,10 +51,17 @@ namespace CMM.Controllers
             return container;
         }
 
-        // 2. How to use form data to upload a file.
-        public ActionResult CreateVirtualEvent(string Message = null)
+        public List<SelectListItem> MusicianNames { get; } = new List<SelectListItem>
         {
-            ViewBag.msg = Message;
+            new SelectListItem { Value = "MX", Text = "Mexico" },
+            new SelectListItem { Value = "CA", Text = "Canada" },
+            new SelectListItem { Value = "US", Text = "USA"  },
+        };
+
+        // 2. How to use form data to upload a file.
+        public IActionResult CreateVirtualEvent(string Message = null)
+        {
+            ViewBag.MusicianList = MusicianNames;
             return View();
         }
 
