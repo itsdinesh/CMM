@@ -144,16 +144,20 @@ namespace CMM.Areas.Identity.Pages.Account
                 {
                     role = Roles.Musician.ToString();
                 }
-                if (result.Succeeded)
+                if (User.IsInRole("Manager") && result.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(user, role);
+                    return LocalRedirect("/Admin/ListMusician");
+                } else
                 {
                     await _userManager.AddToRoleAsync(user, role);
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                    return LocalRedirect(returnUrl);
                 }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+                //foreach (var error in result.Errors)
+                //{
+                //    ModelState.AddModelError(string.Empty, error.Description);
+                //}
             }
 
             // If we got this far, something failed, redisplay form
