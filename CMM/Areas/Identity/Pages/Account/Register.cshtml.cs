@@ -58,20 +58,17 @@ namespace CMM.Areas.Identity.Pages.Account
 (
            new List<SelectListItem>
            {
-            new SelectListItem { Selected = false, Text = "Manager", Value = "Manager" },
-            new SelectListItem { Selected = false, Text = "Musician", Value = "Musician" },
             new SelectListItem { Selected = false, Text = "Patron", Value = "Patron" }
 
 }, "Value", "Text", 1);
 
-        /*        public SelectList ManagerRoleselectList = new SelectList
+                public SelectList ManagerRoleselectList = new SelectList
         (
                   new List<SelectListItem>
                   {
-                    new SelectListItem { Selected = false, Text = "Manager", Value = "Manager" },
                     new SelectListItem { Selected = false, Text = "Musician", Value = "Musician" }
 
-        }, "Value", "Text", 1); */
+        }, "Value", "Text", 1); 
 
         public class InputModel
         {
@@ -150,28 +147,8 @@ namespace CMM.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, role);
-                    /* _logger.LogInformation("User created a new account with password.");
-
-                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                     var callbackUrl = Url.Page(
-                         "/Account/ConfirmEmail",
-                         pageHandler: null,
-                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
-                         protocol: Request.Scheme);
-
-                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                     {
-                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-                     }
-                     else
-                     {*/
                     await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
-                   // }
                 }
                 foreach (var error in result.Errors)
                 {

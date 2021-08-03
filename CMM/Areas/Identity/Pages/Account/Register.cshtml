@@ -1,7 +1,13 @@
 ﻿@page
 @model RegisterModel
-@{
-    ViewData["Title"] = "Register";
+@{if (User.IsInRole("Manager"))
+    {
+        ViewData["Title"] = "Create New Account";
+    }
+            else
+            {
+                ViewData["Title"] = "Register";
+            }
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -42,15 +48,34 @@
                 <input asp-for="Input.Age" class="form-control" />
                 <span asp-validation-for="Input.Age" class="text-danger"></span>
             </div>
-                <div class="form-group">
-                    <label asp-for="Input.userRoles"></label>
-                    <select asp-for="Input.userRoles" asp-items="Model.PatronRoleselectList" class="form-control"></select>
-                    <span asp-validation-for="Input.userRoles" class="text-danger"></span>
-                </div>
-                <button type="submit" class="btn btn-primary">Register</button>
-</form>
+
+
+            @{
+                if (User.IsInRole("Manager"))
+                {
+                    <div class="form-group">
+                        <label asp-for="Input.userRoles"></label>
+                        <select asp-for="Input.userRoles" asp-items="Model.ManagerRoleselectList" class="form-control" disabled></select>
+                        <span asp-validation-for="Input.userRoles" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                }
+
+                else
+                {
+                    <div class="form-group">
+                        <label asp-for="Input.userRoles"></label>
+                        <select asp-for="Input.userRoles" asp-items="Model.PatronRoleselectList" class="form-control" disabled></select>
+                        <span asp-validation-for="Input.userRoles" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                }
+
+            }
+
+        </form>
     </div>
-    <div class="col-md-6 col-md-offset-2">
+    @*<div class="col-md-6 col-md-offset-2">
         <section>
             <h4>Use another service to register.</h4>
             <hr />
@@ -79,7 +104,7 @@
                 }
             }
         </section>
-    </div>
+    </div>*@
 </div>
 
 @section Scripts {

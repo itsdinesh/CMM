@@ -9,7 +9,7 @@
     {
 
         <li class="nav-item">
-            <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+            <a id="manage" class="nav-link text-dark" title="Manage">Hello @UserManager.GetUserName(User)!</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -24,7 +24,7 @@
                 <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="TicketHistory">Ticket History</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="EditUserProfile">Edit User Profile</a>
+                <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Edit User Profile</a>
             </li>
         }
         if (User.IsInRole("Musician"))
@@ -33,7 +33,7 @@
                 <a class="nav-link text-dark" asp-area="" asp-controller="Musician" asp-action="MusicianViewUpcomingEvents">Musician Event List</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Musician" asp-action="MusicianEditAccount">Edit Musician Profile</a>
+                <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Edit Musician Profile</a>
             </li>
         }
         if (User.IsInRole("Manager"))
@@ -49,13 +49,13 @@
                 <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="ListVirtualEvent">Event List</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="CreateMusicianAccount">Create Musician Account</a>
+                <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Create Musician Account</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="ListMusician">Musician List</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AdminEditMusicianAccount">Edit Musician Profile</a>
+                <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Edit Manager Profile</a>
             </li>
         }
         <li class="nav-item">

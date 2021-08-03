@@ -88,7 +88,7 @@ namespace CMM.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    string emailTemp = "manager6@gmail.com";
+                    
                     TablesController tc = new TablesController();
                     //var eventID = await _context.Event.FirstOrDefaultAsync(m => m.ConcertID == concertID);
                     var paymentID = await _userManager.FindByEmailAsync(Input.Email);
