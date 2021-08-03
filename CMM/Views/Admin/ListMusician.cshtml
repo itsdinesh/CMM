@@ -1,7 +1,86 @@
-﻿
+﻿@model IEnumerable<CMM.Areas.Identity.Data.CMMUser>
+
+
 @{
-    ViewData["Title"] = "List Musicians";
+    ViewData["Title"] = "List of Active Musicians";
 }
 
-<h1>Administrator - List Musicians</h1>
+<div class="container my-3">
+    <div class="col-md-12 text-center">
+        <h1>List of Active Musicians</h1>
+        <a class="btn btn-success" asp-area="Identity" asp-page="/Account/Register" role="button">Create New Musician</a>
 
+    </div>
+</div>
+
+<style>
+    #td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .table {
+        table-layout: fixed;
+        word-wrap: break-word;
+    }
+</style>
+
+<div class="">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    User ID
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Gender
+                </th>
+                <th>
+                    Age
+                </th>
+                <th>
+                    Phone Number
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+                @if (item.userRoles == "Musician")
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Age)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+                        <td>
+                            <a class="btn btn-primary btn-block btn-secondary" asp-controller="Admin" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

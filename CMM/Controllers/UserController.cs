@@ -122,7 +122,7 @@ namespace CMM.Controllers
                 return NotFound();
             }
 
-            
+
             var payment = await _paymentContext.Payment
                 .FirstOrDefaultAsync(m => m.PaymentID == id);
             if (payment == null)
@@ -133,7 +133,7 @@ namespace CMM.Controllers
             string userIDLoggedin = (await _userManager.GetUserAsync(User))?.Id;
             string currentPaymentUserID = payment.User_id;
 
-            if (currentPaymentUserID != userIDLoggedin) 
+            if (currentPaymentUserID != userIDLoggedin)
             {
                 return NotFound();
             }

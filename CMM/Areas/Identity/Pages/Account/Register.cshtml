@@ -54,21 +54,23 @@
             @{
                 if (User.IsInRole("Manager"))
                 {
-                    <div class="form-group">
-                        <label asp-for="Input.userRoles"></label>
-                        <select asp-for="Input.userRoles" asp-items="Model.ManagerRoleselectList" class="form-control" disabled></select>
-                        <span asp-validation-for="Input.userRoles" class="text-danger"></span>
-                    </div>
+                        <div class="form-group">
+                            <label asp-for="Input.userRoles"></label>
+                            @*<select asp-for="Input.userRoles" asp-items="Model.ManagerRoleselectList" class="form-control" disabled>Input.userRoles</select>*@
+                            <input asp-for="Input.userRoles" class="form-control" value="Musician" disabled/>
+                            <span asp-validation-for="Input.userRoles" class="text-danger"></span>
+                        </div>
                     <button type="submit" class="btn btn-primary">Create</button>
                 }
 
                 else
                 {
-                    <div class="form-group">
-                        <label asp-for="Input.userRoles"></label>
-                        <select asp-for="Input.userRoles" asp-items="Model.PatronRoleselectList" class="form-control" disabled></select>
-                        <span asp-validation-for="Input.userRoles" class="text-danger"></span>
-                    </div>
+        <div class="form-group">
+            <label asp-for="Input.userRoles"></label>
+            @*<select asp-for="Input.userRoles" asp-items="Model.PatronRoleselectList" class="form-control" disabled></select>*@
+            <input asp-for="Input.userRoles" class="form-control" value="Patron" disabled />
+            <span asp-validation-for="Input.userRoles" class="text-danger"></span>
+        </div>
                     <button type="submit" class="btn btn-primary">Register</button>
                 }
             }

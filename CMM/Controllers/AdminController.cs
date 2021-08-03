@@ -193,12 +193,10 @@ namespace CMM.Controllers
         {
             return View();
         }
-        public IActionResult ListMusician()
+        public async Task<IActionResult> ListMusician()
         {
             var users = _userManager.Users;
-            // Future's Dinesh Problem.
-            return NotFound(users.ToListAsync().Result);
-            return View();
+            return View(await users.ToListAsync());
         }
 
         public IActionResult AdminEditMusicianAccount()
