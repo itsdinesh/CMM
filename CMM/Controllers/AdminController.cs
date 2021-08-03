@@ -196,7 +196,8 @@ namespace CMM.Controllers
         public IActionResult ListMusician()
         {
             var users = _userManager.Users;
-            return NotFound(users.ToListAsync());
+            // Future's Dinesh Problem.
+            return NotFound(users.ToListAsync().Result);
             return View();
         }
 
