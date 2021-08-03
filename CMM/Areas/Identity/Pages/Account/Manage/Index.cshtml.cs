@@ -41,7 +41,6 @@ namespace CMM.Areas.Identity.Pages.Account.Manage
             [Display(Name = "User ID")]
             public string User_id { get; set; }
 
-
             public string Name { get; set; } //lock from edit
 
             [Display(Name = "User Role")]
@@ -58,7 +57,6 @@ namespace CMM.Areas.Identity.Pages.Account.Manage
             public string GroupName { get; set; }
 
             [Display(Name = "Address")]
-            [RegularExpression(@"^[A-Z]+[a-z]*$", ErrorMessage = "Only captial letter in the first char & only accept alphabet")]
             public string Address { get; set; }
         }
 
@@ -76,8 +74,9 @@ namespace CMM.Areas.Identity.Pages.Account.Manage
                 Age = user.Age,
                 Gender = user.Gender,
                 User_id = user.Id,
-                userRoles = user.userRoles
-
+                userRoles = user.userRoles,
+                Address = user.Address,
+                GroupName = user.GroupName
             };
         }
 
@@ -122,6 +121,16 @@ namespace CMM.Areas.Identity.Pages.Account.Manage
             if(Input.Age != user.Age)
             {
                 user.Age = Input.Age;
+            }
+
+            if (Input.Address != user.Address)
+            {
+                user.Address = Input.Address;
+            }
+
+            if (Input.GroupName != user.GroupName)
+            {
+                user.GroupName = Input.GroupName;
             }
 
             await _userManager.UpdateAsync(user);

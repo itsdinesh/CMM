@@ -42,6 +42,11 @@
                     <input asp-for="Input.Age" class="form-control" disabled />
                     <span asp-validation-for="Input.Age" class="text-danger"></span>
                 </div>
+                <div class="form-group">
+                    <label asp-for="Input.PhoneNumber"></label>
+                    <input asp-for="Input.PhoneNumber" class="form-control" />
+                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                </div>
             }
             else if (SignInManager.IsSignedIn(User) && User.IsInRole("Manager"))
             {
@@ -76,7 +81,6 @@
                     <input asp-for="Input.Address" class="form-control" />
                     <span asp-validation-for="Input.Address" class="text-danger"></span>
                 </div>
-                <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
             }
             else
             {
@@ -116,8 +120,8 @@
                     <input asp-for="Input.Address" class="form-control" />
                     <span asp-validation-for="Input.Address" class="text-danger"></span>
                 </div>
-                <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
             }
+            <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
         </form>
     </div>
 </div>

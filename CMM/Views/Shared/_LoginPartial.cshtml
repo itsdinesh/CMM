@@ -7,14 +7,12 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
-
         <li class="nav-item">
             <a id="manage" class="nav-link text-dark" title="Manage">Hello @UserManager.GetUserName(User)!</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
         </li>
-
         if (User.IsInRole("Patron"))
         {
             <li class="nav-item">
@@ -38,10 +36,6 @@
         }
         if (User.IsInRole("Manager"))
         {
-            <!-- <li class="nav-item">
-                 <a class="nav-link text-dark" asp-area="" asp-controller="Payments" asp-action="Index">Payment List</a>
-             </li> -->
-
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="CreateVirtualEvent">Create Virtual Event</a>
             </li>
@@ -63,7 +57,6 @@
                 <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
             </form>
         </li>
-
     }
     else
     {
@@ -79,7 +72,5 @@
         <li class="nav-item">
             <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
         </li>
-
-
     }
 </ul>

@@ -79,7 +79,7 @@ namespace CMM.Areas.Identity.Pages.Account
 
             [Required]
             [StringLength(100)]
-            [RegularExpression("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$", ErrorMessage = "The password must have eight characters, at least one letter, one number and a special character.")]
+            [RegularExpression("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{6,}$", ErrorMessage = "The password must have six characters, at least one letter, one number and a special character.")]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
