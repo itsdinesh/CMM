@@ -102,7 +102,7 @@ namespace CMM.Controllers
                 }
             }
             @event.ConcertPoster = blobitem.Uri.ToString();
-            @event.TicketPurchased = 500;
+            @event.TicketPurchased = 0;
             _context.Add(@event);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(ListVirtualEvent));

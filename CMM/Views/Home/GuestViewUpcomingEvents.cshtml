@@ -41,7 +41,7 @@
                     Ticket Price
                 </th>
                 <th>
-                    Tickets
+                    Available Tickets
                 </th>
                 <th>
                     Concert Status
@@ -69,7 +69,7 @@
                             RM @Html.DisplayFor(modelItem => item.ConcertPrice)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.TicketLimit)
+                            @(item.TicketLimit - @item.TicketPurchased)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.ConcertStatus)

@@ -83,7 +83,7 @@
                 <label class="control-label">Enter your card number: </label>
                 <div class="card-container">
                     <div class="card-type"></div>
-                    <input placeholder="0000 0000 0000 0000" onkeyup="$cc.validate(event)" maxlength="19"/>
+                    <input placeholder="0000 0000 0000 0000" onkeyup="$cc.validate(event)" maxlength="19" id="cc-number" name="cc-number" required/>
                     <div class="card-valid">&#9632;</div>
                 </div>
 
@@ -91,12 +91,13 @@
 
                     <div class="expiration">
                         <label class="control-label">Expiration Date: </label>
-                        <input onkeyup="$cc.expiry.call(this,event)" maxlength="7" placeholder="mm/yyyy"/>
+                        <input onkeyup="$cc.expiry.call(this,event)" placeholder="MM/YYYY" class="form-control" data-val="true" data-val-length="The field must have a maximum length of 7." data-val-length-max="7" data-val-required="The MM/YYYY field is required." maxlength="7" id="cc-exp" name="cc-exp" required/>
                     </div>
 
                     <div class="cvv">
                         <label class="control-label">CVV Number: </label>
-                        <input placeholder="XXX" maxlength="3"/>
+                        <input placeholder="XXX" class="form-control"  data-val="true" data-val-length="The field must have a maximum length of 3." data-val-length-max="3" data-val-required="The CVV field is required." maxlength="3" id="cc-csc" name="cc-csc"/>
+                        <span id="CVV" class="text-danger"></span>
                     </div>
                 </div>
             </div>
