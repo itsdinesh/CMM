@@ -212,7 +212,7 @@ namespace CMM.Controllers
             return View(await users.ToListAsync());
         }
 
-        public async Task<IActionResult> EditMusicianAccount(string ?id)
+        public async Task<IActionResult> ViewMusicianAccount(string ?id)
         {
             var users = _userManager.Users;
             ViewBag.MusicianID = id;
@@ -220,7 +220,7 @@ namespace CMM.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditMusicianAccount(CMMUser user, string submit)
+        public IActionResult ViewMusicianAccount(CMMUser user, string submit)
         {
             if (submit == "Update Details")
             {
