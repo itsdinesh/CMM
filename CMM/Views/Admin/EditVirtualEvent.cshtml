@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label asp-for="ConcertPoster" class="control-label"></label>
                 <img src="@Html.DisplayFor(model => model.ConcertPoster)" width="300" />
-                <input asp-for="ConcertPoster" type="file" name="files" single />
+                <input asp-for="ConcertPoster" type="file" name="files" accept="image/*" single />
             </div>
             <div class="form-group">
                 <label asp-for="ConcertMusician" class="control-label"></label>

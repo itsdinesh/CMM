@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CMM.Migrations.CMMEvent
 {
     [DbContext(typeof(CMMEventContext))]
-    [Migration("20210803143024_addEvent")]
+    [Migration("20210804203601_addEvent")]
     partial class addEvent
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CMM.Migrations.CMMNew
 {
     [DbContext(typeof(CMMNewContext))]
-    [Migration("20210801111703_addPayment")]
+    [Migration("20210804203617_addPayment")]
     partial class addPayment
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

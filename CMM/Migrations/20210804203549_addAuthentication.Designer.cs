@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CMM.Migrations
 {
     [DbContext(typeof(CMMContext))]
-    [Migration("20210801111632_addAuthentication")]
+    [Migration("20210804203549_addAuthentication")]
     partial class addAuthentication
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
