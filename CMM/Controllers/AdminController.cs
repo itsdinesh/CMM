@@ -23,11 +23,13 @@ namespace CMM.Controllers
     {
         private readonly CMMEventContext _context;
         private readonly UserManager<CMMUser> _userManager;
+        private readonly IEnumerable<CMM.Areas.Identity.Data.CMMUser> _cmmUser;
 
-        public AdminController(CMMEventContext context, UserManager<CMMUser> userManager)
+        public AdminController(CMMEventContext context, UserManager<CMMUser> userManager, IEnumerable<CMM.Areas.Identity.Data.CMMUser> cmmUser)
         {
             _context = context;
             _userManager = userManager;
+            _cmmUser = cmmUser;
         }
 
         // 1. Create New Function - Link to the blob storage account & also at the correct container.
@@ -51,17 +53,27 @@ namespace CMM.Controllers
             return container;
         }
 
-        public List<SelectListItem> MusicianNames { get; } = new List<SelectListItem>
-        {
-            new SelectListItem { Value = "MX", Text = "Mexico" },
-            new SelectListItem { Value = "CA", Text = "Canada" },
-            new SelectListItem { Value = "US", Text = "USA"  },
-        };
-
         // 2. How to use form data to upload a file.
         public IActionResult CreateVirtualEvent(string Message = null)
         {
-            ViewBag.MusicianList = MusicianNames;
+            var users = _userManager.Users;
+            List<SelectListItem> musicianNamesList = new List<SelectListItem>();
+
+            foreach (var item in users)
+            {
+                if (item.userRoles == "Musician")
+                {
+                    SelectListItem selListItem = new SelectListItem() { Value = item.Name, Text = item.Name};
+                    musicianNamesList.Add(selListItem);
+                }
+            }
+            if (musicianNamesList.Count == 0) 
+            {
+                return RedirectToAction(nameof(NoMusician));
+            }
+
+            ViewBag.MusicianList = musicianNamesList;
+            //return NotFound(musicianNamesList.Count);
             return View();
         }
 
@@ -200,6 +212,11 @@ namespace CMM.Controllers
         }
 
         public IActionResult AdminEditMusicianAccount()
+        {
+            return View();
+        }
+
+        public IActionResult NoMusician()
         {
             return View();
         }
