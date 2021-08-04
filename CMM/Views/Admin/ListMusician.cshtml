@@ -1,6 +1,4 @@
 ﻿@model IEnumerable<CMM.Areas.Identity.Data.CMMUser>
-
-
 @{
     ViewData["Title"] = "List of Active Musicians";
 }
@@ -76,7 +74,7 @@
                             @Html.DisplayFor(modelItem => item.PhoneNumber)
                         </td>
                         <td>
-                            <a class="btn btn-primary btn-block btn-secondary" asp-controller="Admin" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-primary btn-block btn-secondary" asp-controller="Admin" asp-action="EditMusicianAccount" asp-route-id="@item.Id">Edit</a>
                         </td>
                     </tr>
                 }

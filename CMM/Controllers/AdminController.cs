@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Identity;
 using CMM.Areas.Identity.Data;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CMM.Controllers
 {
@@ -211,11 +212,30 @@ namespace CMM.Controllers
             return View(await users.ToListAsync());
         }
 
-        public IActionResult AdminEditMusicianAccount()
+        public async Task<IActionResult> EditMusicianAccount(string ?id)
         {
-            return View();
+            var users = _userManager.Users;
+            ViewBag.MusicianID = id;
+            return View(await users.ToListAsync());
         }
 
+        [HttpPost]
+        public IActionResult EditMusicianAccount(CMMUser user, string submit)
+        {
+            if (submit == "Update Details")
+            {
+                return NotFound("Details");
+            }
+            else if (submit == "Update Email")
+            {
+                return NotFound("Email");
+            }
+            else if (submit == "Update Password")
+            {
+                return NotFound("Password");
+            }
+            return NotFound("404");
+        }
         public IActionResult NoMusician()
         {
             return View();

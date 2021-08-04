@@ -66,7 +66,6 @@ namespace CMM.Areas.Identity.Pages.Account.Manage
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
             Username = userName;
-
             Input = new InputModel //fetch data from the table to the form
             {
                 PhoneNumber = phoneNumber,
@@ -134,7 +133,7 @@ namespace CMM.Areas.Identity.Pages.Account.Manage
             }
 
             await _userManager.UpdateAsync(user);
-           
+
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";

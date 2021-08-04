@@ -135,16 +135,11 @@ namespace CMM.Areas.Identity.Pages.Account
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 var role = Roles.Patron.ToString();
-                
-                //if (Input.userRoles == "Manager")
-                //{
-                //    role = Roles.Manager.ToString();
-                //}
 
-                //if (Input.userRoles == "Musician")
-                //{
-                //    role = Roles.Musician.ToString();
-                //}
+                if (Input.userRoles == "Musician")
+                {
+                    role = Roles.Musician.ToString();
+                }
 
                 if (User.IsInRole("Manager") && result.Succeeded)
                 {

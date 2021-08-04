@@ -2,9 +2,8 @@
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
-}   
-        <h1>@ViewData["Title"]</h1>
-
+}
+<h1>@ViewData["Title"]</h1>
 
 <div class="row">
     <div class="col-md-4">
@@ -54,23 +53,23 @@
             @{
                 if (User.IsInRole("Manager"))
                 {
-                        <div class="form-group">
-                            <label asp-for="Input.userRoles"></label>
-                            <select asp-items="Model.ManagerRoleselectList" class="form-control" disabled></select>        
-                            <input type="hidden" asp-for="Input.userRoles" value="Musician" />
-                            <span asp-validation-for="Input.userRoles" class="text-danger"></span>
-                        </div>
+                    <div class="form-group">
+                        <label asp-for="Input.userRoles"></label>
+                        <select asp-items="Model.ManagerRoleselectList" class="form-control" disabled></select>
+                        <input type="hidden" asp-for="Input.userRoles" value="Musician" />
+                        <span asp-validation-for="Input.userRoles" class="text-danger"></span>
+                    </div>
                     <button type="submit" class="btn btn-primary">Create</button>
                 }
 
                 else
                 {
-        <div class="form-group">
-            <label asp-for="Input.userRoles"></label>
-            <select asp-items="Model.PatronRoleselectList" class="form-control" disabled></select>
-            <input type="hidden" asp-for="Input.userRoles" value="Patron" />
-            <span asp-validation-for="Input.userRoles" class="text-danger"></span>
-        </div>
+                    <div class="form-group">
+                        <label asp-for="Input.userRoles"></label>
+                        <select asp-items="Model.PatronRoleselectList" class="form-control" disabled></select>
+                        <input type="hidden" asp-for="Input.userRoles" value="Patron" />
+                        <span asp-validation-for="Input.userRoles" class="text-danger"></span>
+                    </div>
                     <button type="submit" class="btn btn-primary">Register</button>
                 }
             }
