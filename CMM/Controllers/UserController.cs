@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 
@@ -122,7 +120,6 @@ namespace CMM.Controllers
                 return NotFound();
             }
 
-
             var payment = await _paymentContext.Payment
                 .FirstOrDefaultAsync(m => m.PaymentID == id);
             if (payment == null)
@@ -150,9 +147,6 @@ namespace CMM.Controllers
             ViewBag.ConcertLink = eventID.ConcertLink;
             ViewBag.ConcertDateTime = eventID.ConcertDateTime;
             ViewBag.ConcertStatus = eventID.ConcertStatus;
-
-            //return NotFound(eventID);
-
             return View(payment);
         }
 

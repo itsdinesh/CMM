@@ -28,7 +28,6 @@ namespace CMM
                     var context =
                     services.GetRequiredService<CMMNewContext>();
                     context.Database.Migrate();
-                    SeedData.Initialize(services);
                     var userManager = services.GetRequiredService<UserManager<CMMUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
                     await ContextRoles.SeedRolesAsync(userManager, roleManager);

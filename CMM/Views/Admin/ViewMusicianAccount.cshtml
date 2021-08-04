@@ -1,0 +1,67 @@
+﻿@model IEnumerable<CMM.Areas.Identity.Data.CMMUser>
+@{
+    ViewData["Title"] = "View Musician Profile";
+}
+
+<h1>View Musician Profile</h1>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            @foreach (var item in Model)
+                @if (item.Id == ViewBag.MusicianID)
+                {
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="@item.UserName">Username</label>
+                        <input asp-for="@item.UserName" class="form-control" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@item.Id">User ID</label>
+                        <input asp-for="@item.Id" class="form-control" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@item.Name"> Name</label>
+                        <input asp-for="@item.Name" class="form-control" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@item.Gender">Gender</label>
+                        <input asp-for="@item.Gender" class="form-control" disabled />
+                    </div>
+                    <a class="btn btn-primary" asp-action="ListMusician" role="button">Back to List of Musicians</a>
+                }
+            </div>
+        <div class="col-md-6">
+            @foreach (var item in Model)
+                @if (item.Id == ViewBag.MusicianID)
+                {
+                    <div class="form-group">
+                        <label asp-for="@item.Age">Age</label>
+                        <input asp-for="@item.Age" class="form-control" disabled/>
+                        <span asp-validation-for="@item.Age" class="text-danger" ></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@item.PhoneNumber">Phone Number</label>
+                        <input asp-for="@item.PhoneNumber" class="form-control" disabled />
+                        <span asp-validation-for="@item.PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@item.GroupName">Group Name</label>
+                        <input asp-for="@item.GroupName" class="form-control" disabled />
+                        <span asp-validation-for="@item.GroupName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@item.Address">Address</label>
+                        <input asp-for="@item.Address" class="form-control" disabled />
+                        <span asp-validation-for="@item.Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@item.Email">Email</label>
+                        <input asp-for="@item.Email" class="form-control" disabled />
+                    </div>
+                    <br />
+                }
+            </div>
+            </div>
+        </div>
