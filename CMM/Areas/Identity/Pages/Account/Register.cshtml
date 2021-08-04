@@ -56,8 +56,8 @@
                 {
                         <div class="form-group">
                             <label asp-for="Input.userRoles"></label>
-                            @*<select asp-for="Input.userRoles" asp-items="Model.ManagerRoleselectList" class="form-control" disabled>Input.userRoles</select>*@
-                            <input asp-for="Input.userRoles" class="form-control" value="Musician" disabled/>
+                            <select asp-items="Model.ManagerRoleselectList" class="form-control" disabled></select>        
+                            <input type="hidden" asp-for="Input.userRoles" value="Musician" />
                             <span asp-validation-for="Input.userRoles" class="text-danger"></span>
                         </div>
                     <button type="submit" class="btn btn-primary">Create</button>
@@ -67,8 +67,8 @@
                 {
         <div class="form-group">
             <label asp-for="Input.userRoles"></label>
-            @*<select asp-for="Input.userRoles" asp-items="Model.PatronRoleselectList" class="form-control" disabled></select>*@
-            <input asp-for="Input.userRoles" class="form-control" value="Patron" disabled />
+            <select asp-items="Model.PatronRoleselectList" class="form-control" disabled></select>
+            <input type="hidden" asp-for="Input.userRoles" value="Patron" />
             <span asp-validation-for="Input.userRoles" class="text-danger"></span>
         </div>
                     <button type="submit" class="btn btn-primary">Register</button>
